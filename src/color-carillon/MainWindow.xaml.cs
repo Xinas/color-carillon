@@ -53,6 +53,7 @@ namespace color_carillon
                         tbR.Text = r.ToString();
                         tbG.Text = g.ToString();
                         tbB.Text = b.ToString();
+                        RectangleColor.Fill = new SolidColorBrush(Color.FromRgb((byte)r, (byte)g, (byte)b));
                     }));
                 }
             }
