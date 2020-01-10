@@ -21,16 +21,17 @@ namespace color_carillon
             MyColor ans = MyColor.None;
 
             if (lgt < 0.2) ans = MyColor.Black;
-            if (lgt > 0.8) ans = MyColor.White;
+            else if (lgt > 0.8) ans = MyColor.White;
 
-            if (sat < 0.25) ans = MyColor.Gray;
+            else if (sat < 0.25) ans = MyColor.Gray;
 
-            if (hue < 30) ans = MyColor.Red;
-            if (hue < 90) ans = MyColor.Yellow;
-            if (hue < 150) ans = MyColor.Green;
-            if (hue < 210) ans = MyColor.Cyan;
-            if (hue < 270) ans = MyColor.Blue;
-            if (hue < 330) ans = MyColor.Magenta;
+            else if (hue < 30) ans = MyColor.Red;
+            else if (hue < 90) ans = MyColor.Yellow;
+            else if (hue < 150) ans = MyColor.Green;
+            else if (hue < 210) ans = MyColor.Cyan;
+            else if (hue < 270) ans = MyColor.Blue;
+            else if (hue < 330) ans = MyColor.Magenta;
+            else ans = MyColor.Red;
 
             return ans;
         }

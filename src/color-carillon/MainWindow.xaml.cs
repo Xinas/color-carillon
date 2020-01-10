@@ -45,15 +45,53 @@ namespace color_carillon
                 if (cmd.Equals('C'))
                 {
                     while (serialPort.BytesToRead < 3) ;
-                    int r = (int)serialPort.ReadByte();
-                    int g = (int)serialPort.ReadByte();
-                    int b = (int)serialPort.ReadByte();
+                    int r = serialPort.ReadByte();
+                    int g = serialPort.ReadByte();
+                    int b = serialPort.ReadByte();
                     Dispatcher.BeginInvoke(new Action(delegate
                     {
                         tbR.Text = r.ToString();
                         tbG.Text = g.ToString();
                         tbB.Text = b.ToString();
                         RectangleColor.Fill = new SolidColorBrush(Color.FromRgb((byte)r, (byte)g, (byte)b));
+
+                        Enums.Color detectedColor = Utils.Classify(r, g, b);
+                        string detected = "";
+                        switch (detectedColor)
+                        {
+                            case Enums.Color.None:
+                                detected = "None";
+                                break;
+                            case Enums.Color.Black:
+                                detected = "Black";
+                                break;
+                            case Enums.Color.White:
+                                detected = "White";
+                                break;
+                            case Enums.Color.Gray:
+                                detected = "Gray";
+                                break;
+                            case Enums.Color.Red:
+                                detected = "Red";
+                                break;
+                            case Enums.Color.Yellow:
+                                detected = "Yellow";
+                                break;
+                            case Enums.Color.Green:
+                                detected = "Green";
+                                break;
+                            case Enums.Color.Cyan:
+                                detected = "Cyan";
+                                break;
+                            case Enums.Color.Blue:
+                                detected = "Blue";
+                                break;
+                            case Enums.Color.Magenta:
+                                detected = "Magenta";
+                                break;
+                        }
+
+                        tbDetected.Text = detected;
                     }));
                 }
             }
